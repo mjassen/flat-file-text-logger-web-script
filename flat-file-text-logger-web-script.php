@@ -13,20 +13,24 @@
 
 $filename = "test.txt";
 
-if($_POST["testfield"] != ''){
-	
-	if (!file_exists($filename)) { //create a file and write the text
-	
-		$fp = fopen($filename, "w") or die("Couldn't open $filename");
-		fwrite($fp, $_POST["testfield"] . "\n");
-		fclose($fp);
-	}else{ //append text to the existing file
-		
-		$fp = fopen($filename, "a") or die("Couldn't open $filename");
-		fputs($fp, $_POST["testfield"] . "\n");
-		fclose($fp);
-	}
-	
+if (isset($_POST["testfield"])) {
+
+    if($_POST["testfield"] != ''){
+        
+        if (!file_exists($filename)) { //create a file and write the text
+        
+            $fp = fopen($filename, "w") or die("Couldn't open $filename");
+            fwrite($fp, $_POST["testfield"] . "\n");
+            fclose($fp);
+        }else{ //append text to the existing file
+            
+            $fp = fopen($filename, "a") or die("Couldn't open $filename");
+            fputs($fp, $_POST["testfield"] . "\n");
+            fclose($fp);
+        }
+        
+    }
+
 }
 
 if (file_exists($filename)) {
